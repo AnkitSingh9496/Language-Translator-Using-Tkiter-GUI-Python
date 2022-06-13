@@ -1,118 +1,74 @@
-# Language-Translator-Using-Tkiter-GUI-Python
-#PROGRAM ****************************************************************************************************
-#************************************************************************************************************************
-#*******************************************************************************************************************************
-
-
 from tkinter import *
 from tkinter import ttk,messagebox
-import googletrans
-import textblob
-
-#def newwindow():
-	#new_window=Tk()
-
+from googletrans import Translator,LANGUAGES
 root=Tk()
 root.title("Translator")
 root.geometry("1080x740")
-
-#root.iconbitmap("C:/Users/shash/Desktop.ico")
-
 root.resizable(0,0)
 root.configure(bg="black")
 
+#def Translate():
+ #translator = Translator()
+ #translated=translator.translate(text= text1.get(1.0, END) , src = combo1.get(), dest =combo2.get())
+ #text2.delete(1.0, END)
+ #text2.insert(END, translated.text)
 
+def change(text="type",src="English",dest="Hindi"):
+ text1=text
+ src1=src
+ dest1=dest
+ trans=Translator()
+ trans1=trans.translate(text,src=src1,dest=dest1)
+ return trans1.text
 
-def trans():
-    #global languages
-    #global language_s
-    t2.delete(1.0,END)
-    try:
-        for key,value in languages.items():
-            if(value==combo1.get()):
-                from_languages_key=key
-        for key,value in languages.items():
-            if(value==combo2.get()):
-                to_languages_key=key
-        text=textblob.TextBlob(t1.get(1.0,END))
-        text=text.translate(from_lang=from_languages_key,to=to_languages_key)
-        t2.insert(1.0,text)
-        #text=text.translate(from_=t1,to=t2)
-    except Exception as e:
-        messagebox.showerror("Translator",e)
-        
+def data():
+ s=combo1.get()
+ d=combo2.get()
+ msg=t1.get(1.0,END)
+ textget=change(text=msg,src=s,dest=d)
+ t2.delete(1.0,END)
+ t2.insert(END,textget)
 
-languages=googletrans.LANGUAGES
-language_s=list(languages.values())
-
-
-
-
-#languages=googletrans.LANGUAGES
-#language_s=list(languages.values())
-#print(language_s)
-
+languageS=list(LANGUAGES.values())
 def delete():
-    t1.delete(1.0,END)
-    t2.delete(1.0,END)
-    
-
-#photo=PhotoImage(file="C:\\Users\\shash\\Desktop\\google-translate-logo-emblem-symbol-services-application-12")
-#label=Label(root,text="hello",image=photo)
-
-#print(language_s)
-
-        
-
-
-
-
+ text1.delete(1.0,END)
+ text2.delete(1.0,END)
+ 
 f1=Frame(root,bg="black",bd=5,relief=SUNKEN)
 f1.place(x=30,y=80,width=440,height=210)
 
-t1 = Text(f1, width=30,height=15,borderwidth=5,relief=RIDGE,bg="sky blue")
-t1.place(x=0,y=0,width=430,height=200)
-t1.insert(1.0,"Enter text to translate......")
+text1 = Text(f1, width=30,height=15,borderwidth=5,relief=RIDGE,bg="sky blue")
+text1.place(x=0,y=0,width=430,height=200)
+text1.insert(1.0,"Enter text to translate......")
 
-combo1=ttk.Combobox(root,value=language_s,font="Roboto",state="r")
+combo1=ttk.Combobox(root,value=languageS,font="Roboto",state="r")
 combo1.place(x=30,y=50,width=440)
 combo1.set('ENGLISH')
-   
-
-button=Button(root,text="TRANSLATE",command=trans,bg="#00ff00",fg="black",padx=10,pady=5)
-button.place(x=490,y=150)
-
-button=Button(root,text="DELETE ALL",command=delete,bg="#00ff00",fg="black",padx=10,pady=5)
-button.place(x=490,y=200)
 
 f2=Frame(root,bg="black",bd=5,relief=SUNKEN)
-f2.place(x=600,y=80,width=440,height=210)
+f2.place(x=600,y=80,width=440,height=210) 
 
-t2 = Text(f2,width=30,height=15,borderwidth=5,relief=RIDGE,bg='sky blue')
-t2.place(x=0,y=0,width=430,height=200)
+text2 = Text(f2,width=30,height=15,borderwidth=5,relief=RIDGE,bg='sky blue')
+text2.place(x=0,y=0,width=430,height=200)
 
-
-combo2=ttk.Combobox(root,value=language_s,font="Roboto",state="r")
+combo2=ttk.Combobox(root,values=languageS,font="Roboto",state="r")
 combo2.place(x=600,y=50,width=438)
 combo2.set("CHOOSE LANGUAGE")
 
-scroll1=Scrollbar(t1)
+scroll1=Scrollbar(text1)
 scroll1.pack(side="right",fill="y")
-scroll1.configure(command=t1.yview)
-t1.configure(yscrollcommand=scroll1.set)
+scroll1.configure(command=text1.yview)
+text1.configure(yscrollcommand=scroll1.set)
 
-
-
-
-
-
-quit=Button(root,text="EXIT",command=root.quit).pack()
-
-
-
-scroll2=Scrollbar(t2)
+scroll2=Scrollbar(text2)
 scroll2.pack(side="right",fill="y")
-scroll2.configure(command=t2.yview)
-t2.configure(yscrollcommand=scroll2.set)
+scroll2.configure(command=text2.yview)
+text2.configure(yscrollcommand=scroll2.set)
+button=Button(root,text="TRANSLATE",command=data,bg="#00ff00",fg="black",padx=10,pady=5)
+
+button.place(x=490,y=150)
+button=Button(root,text="DELETE ALL",command=delete,bg="#00ff00",fg="black",padx=10,pady=5)
+button.place(x=490,y=200)
+#quit=Button(root,text="EXIT",command=root.quit).pack()
 
 root.mainloop()
