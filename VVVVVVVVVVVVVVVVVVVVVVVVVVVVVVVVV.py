@@ -97,16 +97,12 @@ scroll2.configure(command=t2.yview)
 t2.configure(yscrollcommand=scroll2.set)
 
 root.mainloop()
-#[8:58 PM, 6/13/2022] A.Singh: c
-
-
-# In[ ]:
 
 
 
 
 
-# In[3]:
+#[8:58 PM, 6/13/2022] A.Singh
 
 
 from tkinter import *
@@ -200,16 +196,6 @@ button.place(x=490,y=150)
 
 button=Button(root,text="DELETE ALL",command=delete,bg="#00ff00",fg="black",padx=10,pady=5)
 button.place(x=490,y=200)
-
-
-
-
-
-
-
-
-
-
 
 #quit=Button(root,text="EXIT",command=root.quit).pack()
 
