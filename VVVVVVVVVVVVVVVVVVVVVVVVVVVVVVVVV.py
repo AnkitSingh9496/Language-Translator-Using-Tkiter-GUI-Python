@@ -1,10 +1,7 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[12]:
 
 
-#[12:10 AM, 6/13/2022] A.Singh:
+
+#A.Singh:
 
 
 from tkinter import *
@@ -223,13 +220,6 @@ button.place(x=490,y=200)
 root.mainloop()
 
 
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 
